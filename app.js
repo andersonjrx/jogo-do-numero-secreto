@@ -3,7 +3,6 @@ let numeroLimite = 100;
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 exibirMensagemInicial();
-console.log(numeroSecreto);
 
 function exibirTextoNaTela(tag, texto){
     let campo = document.querySelector(tag);
@@ -57,7 +56,6 @@ function limparCampo(){
 
 function reiniciarJogo(){
     numeroSecreto = gerarNumeroAleatorio();
-    console.log(numeroSecreto); 
     limparCampo();
     tentativas= 1;
    exibirMensagemInicial();
