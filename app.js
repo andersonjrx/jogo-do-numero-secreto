@@ -18,11 +18,18 @@ function exibirMensagemInicial(){
 function verificarChute() {
     let chute = document.querySelector('input').value;
 
+    if(chute == null || chute < 1 || chute > 100){
+        exibirTextoNaTela('p', 'Por favor, digite um número entre 1 e 100');
+        limparCampo();
+        return;
+    }
+
     if(chute == numeroSecreto){
         exibirTextoNaTela('h1', 'Parabéns, você ganhou o jogo!!');
         let palavraTentativa = tentativas > 1 ? ' tentativas' : ' tentativa';
         exibirTextoNaTela('p', 'Você acertou o número secreto com '+ tentativas + palavraTentativa);
         document.getElementById('reiniciar').removeAttribute('disabled');
+        document.getElementById('verificar_chute').setAttribute('disabled', true);
     }else {
         if(chute > numeroSecreto){
             exibirTextoNaTela('p', 'O número secreto é menor que '+ chute);
@@ -60,4 +67,11 @@ function reiniciarJogo(){
     tentativas= 1;
    exibirMensagemInicial();
    document.getElementById('reiniciar').setAttribute('disabled', true);
+   document.getElementById('verificar_chute').removeAttribute('disabled');
 }
+
+document.querySelector('input').addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        verificarChute();
+    }
+});
